@@ -48,15 +48,15 @@ $.fn.optionTree = function(tree, options) {
     var removeNested = function (name) {
         $("select[" + options.attr + "^='"+ name + "']").remove();
     };
-    
+
     var parentName = function (name) {
-        return name.replace(/_$/, ''); 
+        return name.replace(/_$/, '');
     };
 
     var setValue = function(name, value) {
         $("input[" + options.attr + "='" + cleanName(name) + "']").val(value).change();
     };
-    
+
     var getParentValue = function(name) {
         var value = '',
             $parent;
@@ -128,10 +128,10 @@ $.fn.optionTree = function(tree, options) {
             .change(function() {
                 if (this.options[this.selectedIndex].value !== '') {
                     if ($.isFunction(options.on_each_change)) {
-                      removeNested(name + '_');
+                        removeNested(name + '_');
                         options.on_each_change.apply(this, [this.options[this.selectedIndex].value, tree]);
                     } else {
-                      // call with value as a first parameter
+                        // call with value as a first parameter
                         $(this).optionTree(tree[this.options[this.selectedIndex].value], options);
                     }
                     if (options.set_value_on === 'each') {
@@ -139,9 +139,9 @@ $.fn.optionTree = function(tree, options) {
                     }
                 } else { // empty value was selected
                     removeNested(name + '_');
-                    
+
                     var fallback = options.empty_value;
-                    
+
                     if (options.get_parent_value_if_empty) {
                         fallback = getParentValue(name);
                     }
@@ -167,12 +167,12 @@ $.fn.optionTree = function(tree, options) {
             if (options.show_multiple > 1) {
                 count_tree_objects = options.show_multiple;
             } else if (options.show_multiple === true) {
-              $.each(tree, function() {
-                 count_tree_objects++;
-              });
+                $.each(tree, function() {
+                    count_tree_objects++;
+                });
             }
             if ( count_tree_objects > 1 ){
-              $select.attr('size', count_tree_objects);
+                $select.attr('size', count_tree_objects);
             }
 
             if ($(this).is('input')) {
@@ -186,7 +186,7 @@ $.fn.optionTree = function(tree, options) {
             }
 
             if ( text_to_choose !== '' ) {
-              $("<option>").html(text_to_choose).val('').appendTo($select);
+                $("<option>").html(text_to_choose).val('').appendTo($select);
             }
 
             var foundPreselect = false;
@@ -201,19 +201,19 @@ $.fn.optionTree = function(tree, options) {
                 var o = $("<option>").html(label)
                     .attr('value', value);
                 var clean = cleanName(name);
-                    if (options.leaf_class && typeof value !== 'object') { // this option is a leaf node
-                        o.addClass(options.leaf_class);
-                    }
+                if (options.leaf_class && typeof value !== 'object') { // this option is a leaf node
+                    o.addClass(options.leaf_class);
+                }
 
-                    o.appendTo($select);
-                    if (isPreselectedFor(clean, value)) {
-                      o.get(0).selected = true;
-                      foundPreselect = true;
-                    }
+                o.appendTo($select);
+                if (isPreselectedFor(clean, value)) {
+                    o.get(0).selected = true;
+                    foundPreselect = true;
+                }
             });
 
             if (foundPreselect) {
-              $select.change();
+                $select.change();
             }
 
             if (!foundPreselect && options.preselect_only_once) { // clear preselect on first not-found level
