@@ -1,0 +1,21 @@
+{
+  "name": "jquery-option-tree",
+  "version": "1.3.0",
+  "description": "JQuery plugin to dynamically create select elements with hierarchical options",
+  "main": "jquery.optionTree.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jongilbraith/jquery-option-tree.git"
+  },
+  "keywords": [
+    "jquery",
+    "plugin",
+    "select"
+  ],
+  "author": "Krzysztof Kotowicz <kkotowicz at gmail dot com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jongilbraith/jquery-option-tree/issues"
+  },
+  "homepage": "https://code.google.com/archive/p/jquery-option-tree"
+}
